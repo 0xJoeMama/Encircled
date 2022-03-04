@@ -11,11 +11,10 @@ public final class ModMultiblocks {
 
     public static final MultiblockType RANDOM_TYPE =
             DefaultMultiblockType.Builder.create(IdBuilder.of("random"),
-                            5, 1, 6, false)
+                            5, 1, 5, false)
                     .define('P', DefaultPredicates.match(Blocks.WHITE_WOOL))
                     .pattern(new String[][]{
                             {
-                                    "PPPPP",
                                     "PPPPP",
                                     "PPPPP",
                                     "PPPPP",
