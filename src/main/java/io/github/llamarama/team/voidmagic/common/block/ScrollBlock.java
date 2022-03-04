@@ -1,5 +1,6 @@
 package io.github.llamarama.team.voidmagic.common.block;
 
+import io.github.llamarama.team.voidmagic.VoidMagic;
 import io.github.llamarama.team.voidmagic.api.block.properties.ModBlockProperties;
 import io.github.llamarama.team.voidmagic.common.block_entity.ScrollBlockEntity;
 import net.minecraft.block.*;
@@ -94,7 +95,7 @@ public class ScrollBlock extends HorizontalFacingBlock implements BlockEntityPro
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BlockState newState = state.with(OPEN, !state.get(OPEN));
 
-        if (!world.isClient) {
+        if (!world.isClient && newState.canPlaceAt(world, pos)) {
             world.setBlockState(pos, newState);
         }
 
@@ -104,7 +105,7 @@ public class ScrollBlock extends HorizontalFacingBlock implements BlockEntityPro
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(HORIZONTAL_FACING, ctx.getPlayerLookDirection().rotateYCounterclockwise());
+        return this.getDefaultState().with(HORIZONTAL_FACING, ctx.getPlayerFacing().rotateYCounterclockwise());
     }
 
     @SuppressWarnings("deprecation")
@@ -115,10 +116,12 @@ public class ScrollBlock extends HorizontalFacingBlock implements BlockEntityPro
             BlockPos left = pos.offset(direction, -1).down();
             BlockPos right = pos.offset(direction, 1).down();
 
-            boolean isLeftFull = world.getBlockState(left).isSideSolidFullSquare(world, right, Direction.UP);
+            boolean isLeftFull = world.getBlockState(left).isSideSolidFullSquare(world, left, Direction.UP);
             boolean isRightFull = world.getBlockState(right).isSideSolidFullSquare(world, right, Direction.UP);
             boolean positionDown = world.getBlockState(pos.down()).isSideSolidFullSquare(world, pos, Direction.UP);
 
+            VoidMagic.getLogger().info(isLeftFull);
+            VoidMagic.getLogger().info(isRightFull);
             return isLeftFull && isRightFull && positionDown;
         } else
             return world.getBlockState(pos.down()).isSideSolidFullSquare(world, pos.down(), Direction.UP);
@@ -135,7 +138,7 @@ public class ScrollBlock extends HorizontalFacingBlock implements BlockEntityPro
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return (beWorld, pos, cachedState, blockEntity) -> {
             if (!world.isClient && blockEntity instanceof ScrollBlockEntity scrollBlockEntity) {
-                if (cachedState.get(OPEN) && cachedState.canPlaceAt(beWorld, pos)) {
+                if (cachedState.get(OPEN) && !cachedState.canPlaceAt(beWorld, pos)) {
                     beWorld.removeBlock(pos, false);
                 }
 
@@ -157,7 +160,7 @@ public class ScrollBlock extends HorizontalFacingBlock implements BlockEntityPro
     @SuppressWarnings("deprecation")
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        return !state.canPlaceAt(world, pos) ?
+        return state.canPlaceAt(world, pos) ?
                 Blocks.AIR.getDefaultState() :
                 super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
