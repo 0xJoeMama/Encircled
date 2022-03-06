@@ -1,5 +1,5 @@
 plugins {
-    id("fabric-loom") version "0.9-SNAPSHOT"
+    id("fabric-loom") version "0.10-SNAPSHOT"
 }
 
 val archiveBaseName = property("archives_base_name")!!
@@ -34,7 +34,7 @@ tasks {
     }
 
     withType(JavaCompile::class) {
-        options.release.set(16)
+        options.release.set(17)
         options.encoding = "UTF-8"
     }
 }

@@ -115,7 +115,7 @@ public class ChunkSyncManager {
      * @see ChunkSyncManager#enqueue
      */
     public void sendStatus(ServerPlayerEntity player) {
-        ServerWorld world = player.getServerWorld();
+        ServerWorld world = player.getWorld();
         /*
             This map contains the new chaos values as well as the positions of the chunks that need updating.
             It is sent through the network and when received the client updates its world view.

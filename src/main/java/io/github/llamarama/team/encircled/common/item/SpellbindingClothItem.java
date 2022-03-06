@@ -97,7 +97,7 @@ public class SpellbindingClothItem extends Item {
         /*
             Then we write the extra data of that block entity.
          */
-        stackOut.getOrCreateNbt().put(NBTConstants.EXTRA_NBT, blockEntity.writeNbt(new NbtCompound()));
+        stackOut.getOrCreateNbt().put(NBTConstants.EXTRA_NBT, blockEntity.createNbt());
 
         // Return the stack.
         return stackOut;

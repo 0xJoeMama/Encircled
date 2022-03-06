@@ -77,7 +77,6 @@ public class ScrollBlock extends HorizontalFacingBlock implements BlockEntityPro
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         Direction facing = state.get(HORIZONTAL_FACING);
         Boolean isOpen = state.get(OPEN);
-
         Pair<VoxelShape, VoxelShape> closedAndOpenShapes;
 
         switch (facing) {

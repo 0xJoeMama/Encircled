@@ -34,7 +34,7 @@ public abstract class MixinChunkSerializer {
     }
 
     @Inject(method = "deserialize", at = @At("RETURN"), cancellable = true)
-    private static void deserializeCustomData(ServerWorld world, StructureManager structureManager, PointOfInterestStorage poiStorage, ChunkPos pos, NbtCompound nbt, CallbackInfoReturnable<ProtoChunk> cir) {
+    private static void deserializeCustomData(ServerWorld world, PointOfInterestStorage poiStorage, ChunkPos chunkPos, NbtCompound nbt, CallbackInfoReturnable<ProtoChunk> cir) {
         ProtoChunk chunk = cir.getReturnValue();
 
         if (chunk instanceof ReadOnlyChunk readOnly) {

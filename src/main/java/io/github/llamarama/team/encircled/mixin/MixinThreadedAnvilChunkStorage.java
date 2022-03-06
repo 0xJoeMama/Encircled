@@ -2,10 +2,12 @@ package io.github.llamarama.team.encircled.mixin;
 
 import io.github.llamarama.team.encircled.common.event.custom.ChunkWatchEvents;
 import net.minecraft.network.Packet;
+import net.minecraft.network.packet.s2c.play.ChunkDataS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.server.world.ThreadedAnvilChunkStorage;
 import net.minecraft.util.math.ChunkPos;
+import org.apache.commons.lang3.mutable.MutableObject;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -21,10 +23,10 @@ public abstract class MixinThreadedAnvilChunkStorage {
     ServerWorld world;
 
     @Inject(method = "sendWatchPackets", at = @At("HEAD"))
-    private void fireEvent(ServerPlayerEntity player, ChunkPos pos, Packet<?>[] packets, boolean withinMaxWatchDistance, boolean withinViewDistance, CallbackInfo ci) {
+    private void fireEvent(ServerPlayerEntity player, ChunkPos pos, MutableObject<ChunkDataS2CPacket> packet, boolean oldWithinViewDistance, boolean newWithinViewDistance, CallbackInfo ci) {
         if (player.world == this.world) {
-            if (withinMaxWatchDistance != withinViewDistance) {
-                if (withinViewDistance) {
+            if (newWithinViewDistance != oldWithinViewDistance) {
+                if (newWithinViewDistance) {
                     ChunkWatchEvents.CHUNK_WATCHED_BY_PLAYER.invoker().onChunkWatched(player, pos);
                 } else {
                     ChunkWatchEvents.CHUNK_UNWATCHED_BY_PLAYER.invoker().onChunkUnWatched(player, pos);

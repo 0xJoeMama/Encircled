@@ -93,8 +93,8 @@ public class ScrollBlockEntity extends BlockEntity implements CircleCaster/*, Bl
     }
 
     @Override
-    public NbtCompound writeNbt(NbtCompound nbt) {
-        return super.writeNbt(nbt);
+    public void writeNbt(NbtCompound nbt) {
+        super.writeNbt(nbt);
     }
 
     @Override

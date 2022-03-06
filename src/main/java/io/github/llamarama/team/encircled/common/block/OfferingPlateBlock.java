@@ -41,11 +41,12 @@ public class OfferingPlateBlock extends PlateBlock {
             return ActionResult.FAIL;
         }
 
-        if (!world.isClient) {
-            ((OfferingPlateBlockEntity) blockEntity).interact((ServerPlayerEntity) player);
+        if (!player.isSneaking()) {
+            ((OfferingPlateBlockEntity) blockEntity).interact(player);
+            return ActionResult.success(world.isClient);
         }
 
-        return ActionResult.SUCCESS;
+        return ActionResult.PASS;
     }
 
     @SuppressWarnings("deprecation")

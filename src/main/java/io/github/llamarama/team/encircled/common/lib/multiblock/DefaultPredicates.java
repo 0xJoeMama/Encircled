@@ -10,6 +10,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tag.Tag;
+import net.minecraft.tag.TagKey;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -27,7 +28,7 @@ public class DefaultPredicates {
         return new BlockStatePredicate(state);
     }
 
-    public static PositionPredicate isInTag(Tag<Block> tag) {
+    public static PositionPredicate isInTag(TagKey<Block> tag) {
         return new BlockTagPredicate(tag);
     }
 

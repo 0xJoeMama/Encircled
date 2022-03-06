@@ -30,7 +30,7 @@ public class ReduceChaosPacket extends DefaultC2SPacket {
         super(REDUCE_CHAOS_PACKET_ID, server, player, handler, buf, responseSender);
         int amount = buf.readInt();
         ChunkPos chunkPos = buf.readChunkPos();
-        ServerWorld world = player.getServerWorld();
+        ServerWorld world = player.getWorld();
         WorldChunk chunk = world.getChunk(chunkPos.x, chunkPos.z);
 
         server.execute(() -> ChaosUtils.executeForChaos(chunk, chaosProvider -> {

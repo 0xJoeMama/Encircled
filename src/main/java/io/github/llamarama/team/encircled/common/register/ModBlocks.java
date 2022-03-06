@@ -8,7 +8,6 @@ import io.github.llamarama.team.encircled.common.util.IdBuilder;
 import io.github.llamarama.team.encircled.common.util.ModItemGroup;
 import io.github.llamarama.team.encircled.common.util.misc.SettingsSupplier;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -42,7 +41,7 @@ public final class ModBlocks {
             // Some settings to be accessed quickly.
             FabricBlockSettings.of(Material.STONE, MapColor.ORANGE)
                     .luminance(2)
-                    .breakByTool(FabricToolTags.PICKAXES, 2)
+//                    .breakByTool(FabricToolTags.PICKAXES, 2) // TODO: Tag Datagen will solve this
                     .requiresTool()
                     .strength(2.7f);
     // Register Blocks
@@ -61,8 +60,8 @@ public final class ModBlocks {
     private static final SettingsSupplier WITHERED_STONE_PROPS = () ->
             FabricBlockSettings.of(Material.STONE, MapColor.GRAY)
                     .requiresTool()
-                    .strength(3.0f)
-                    .breakByTool(FabricToolTags.PICKAXES, 3);
+                    .strength(3.0f);
+//                    .breakByTool(FabricToolTags.PICKAXES, 3); // TODO: Tag Datagen will solve this
     public static final Block WITHERED_STONE = register("withered_stone",
             new Block(WITHERED_STONE_PROPS.get()));
     public static final Block POLISHED_WITHERED_STONE = register("polished_withered_stone",
