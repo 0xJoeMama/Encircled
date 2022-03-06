@@ -36,7 +36,7 @@ public final class ModBlockEntityTypes {
         return ImmutableMap.copyOf(REGISTRY);
     }
 
-    static void init() {
+    public static void init() {
         REGISTRY.forEach((id, type) -> Registry.register(Registry.BLOCK_ENTITY_TYPE, IdBuilder.of(id), type));
     }
 

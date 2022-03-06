@@ -43,7 +43,7 @@ public final class ModItems {
         return ImmutableMap.copyOf(REGISTRY);
     }
 
-    static void init() {
+    public static void init() {
         REGISTRY.forEach((id, item) -> Registry.register(Registry.ITEM, IdBuilder.of(id), item));
     }
 

@@ -111,7 +111,7 @@ public final class ModBlocks {
         return ImmutableMap.copyOf(REGISTRY);
     }
 
-    static void init() {
+    public static void init() {
         REGISTRY.forEach((id, block) -> Registry.register(Registry.BLOCK, IdBuilder.of(id), block));
     }
 

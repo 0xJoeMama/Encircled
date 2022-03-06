@@ -46,6 +46,7 @@ public final class EventHandler {
     private static void onServerStop(MinecraftServer server) {
         // Remove the chunk sync manager from memory to prevent unecessary garbage collection.
         ChunkSyncManager.INSTANCE.popAll();
+        ChunkSyncManager.INSTANCE = null;
     }
 
     private static void onPlayerJoined(ServerPlayNetworkHandler serverPlayNetworkHandler, PacketSender sender, MinecraftServer server) {

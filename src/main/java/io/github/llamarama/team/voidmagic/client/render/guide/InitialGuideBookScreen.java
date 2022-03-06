@@ -1,6 +1,5 @@
 package io.github.llamarama.team.voidmagic.client.render.guide;
 
-import io.github.llamarama.team.voidmagic.VoidMagic;
 import io.github.llamarama.team.voidmagic.client.VoidMagicClient;
 import io.github.llamarama.team.voidmagic.common.network.ModNetworking;
 import io.github.llamarama.team.voidmagic.common.network.packet.IncreaseChaosPacket;
@@ -64,8 +63,6 @@ public class InitialGuideBookScreen extends Screen {
         super.init();
         this.increaseButton = this.addDrawableChild(new ButtonWidget(width / 2, height / 2, 100, 20,
                 new LiteralText("decrease"), (button) -> {
-
-            VoidMagic.getLogger().info("Pogus Maximus");
             ClientPlayerEntity player = VoidMagicClient.getGame().player;
 
             if (player == null)

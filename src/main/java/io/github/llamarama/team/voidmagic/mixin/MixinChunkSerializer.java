@@ -8,11 +8,12 @@ import net.minecraft.structure.StructureManager;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.ChunkSerializer;
 import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.ProtoChunk;
+import net.minecraft.world.chunk.ReadOnlyChunk;
 import net.minecraft.world.poi.PointOfInterestStorage;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ChunkSerializer.class)
@@ -24,8 +25,7 @@ public abstract class MixinChunkSerializer {
 
         voidMagicExtraData.putString(NBTConstants.VOIDMAGIC_VERSION_KEY, NBTConstants.VOIDMAGIC_VERSION);
         ChaosUtils.executeForChaos(chunk,
-                chaosProvider -> voidMagicExtraData.putInt(NBTConstants.CHAOS, chaosProvider.getChaosValue())
-        );
+                chaosProvider -> voidMagicExtraData.putInt(NBTConstants.CHAOS, chaosProvider.getChaosValue()));
 
         NbtCompound returnValue = cir.getReturnValue();
         returnValue.put(NBTConstants.VOIDMAGIC_DATA, voidMagicExtraData);
@@ -33,15 +33,17 @@ public abstract class MixinChunkSerializer {
         cir.setReturnValue(returnValue);
     }
 
-    @ModifyVariable(method = "deserialize", at = @At(value = "STORE"))
-    private static Chunk onChunk2Stored(Chunk chunk2, ServerWorld world, StructureManager structureManager,
-                                        PointOfInterestStorage poiStorage, ChunkPos pos, NbtCompound nbt) {
-        NbtCompound voidMagicData = nbt.getCompound(NBTConstants.VOIDMAGIC_DATA);
+    @Inject(method = "deserialize", at = @At("RETURN"), cancellable = true)
+    private static void deserializeCustomData(ServerWorld world, StructureManager structureManager, PointOfInterestStorage poiStorage, ChunkPos pos, NbtCompound nbt, CallbackInfoReturnable<ProtoChunk> cir) {
+        ProtoChunk chunk = cir.getReturnValue();
 
-        ChaosUtils.executeForChaos(chunk2,
-                (chaosProvider) -> chaosProvider.setChaosValue(voidMagicData.getInt(NBTConstants.CHAOS)));
+        if (chunk instanceof ReadOnlyChunk readOnly) {
+            ChaosUtils.executeForChaos(readOnly.getWrappedChunk(), chaosProvider ->
+                    chaosProvider.setChaosValue(nbt.getCompound(NBTConstants.VOIDMAGIC_DATA).getInt(NBTConstants.CHAOS))
+            );
+        }
 
-        return chunk2;
+        cir.setReturnValue(chunk);
     }
 
 }

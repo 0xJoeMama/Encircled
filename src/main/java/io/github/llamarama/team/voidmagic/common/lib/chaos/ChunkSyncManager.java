@@ -63,7 +63,7 @@ public class ChunkSyncManager {
         UUID uniqueID = player.getUuid();
         this.pending.put(uniqueID, chunkPos);
 
-        VoidMagic.getLogger().info("Pushed chunk at " + chunkPos);
+        VoidMagic.getLogger().debug("Pushed chunk at " + chunkPos);
     }
 
     /**
@@ -138,8 +138,7 @@ public class ChunkSyncManager {
         ModNetworking.get().sendToClient(new MassChunkUpdatePacket(toBSent), player);
 
         // Log the fact that a packet was sent in debug mode.
-        if (VoidMagic.getLogger().isDebugEnabled())
-            VoidMagic.getLogger().debug("Status sent to " + player);
+        VoidMagic.getLogger().debug("Status sent to " + player);
     }
 
     /**
@@ -151,8 +150,9 @@ public class ChunkSyncManager {
     public void enqueue(Runnable runnable) {
         // The number we compare may need tweaking to get it to work well and efficiently for both single player and
         // multiplayer. Currently it is set to the minimum amount of chunks a client can render at once.
-        if (this.pending.size() > IntegerConstants.MIN_RENDER_DISTANCE)
+        if (this.pending.size() > IntegerConstants.MIN_RENDER_DISTANCE) {
             runnable.run();
+        }
     }
 
 }
