@@ -1,0 +1,13 @@
+{
+    "variants": {
+        "type=top": {
+            "model": "encircled:block/tofal_tiles_slab_top"
+        },
+        "type=bottom": {
+            "model": "encircled:block/tofal_tiles_slab"
+        },
+        "type=double": {
+            "model": "encircled:block/tofal_tiles"
+        }
+    }
+}

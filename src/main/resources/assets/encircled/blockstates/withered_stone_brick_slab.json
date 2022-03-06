@@ -1,0 +1,13 @@
+{
+    "variants": {
+        "type=top": {
+            "model": "encircled:block/withered_stone_brick_slab_top"
+        },
+        "type=bottom": {
+            "model": "encircled:block/withered_stone_brick_slab"
+        },
+        "type=double": {
+            "model": "encircled:block/withered_stone_bricks"
+        }
+    }
+}

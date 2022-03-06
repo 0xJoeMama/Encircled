@@ -1,9 +1,9 @@
 {
     "schemaVersion": 1,
-    "id": "voidmagic",
+    "id": "encircled",
     "version": "${version}",
 
-    "name": "VoidMagic",
+    "name": "Encircled",
     "description": "This is an example description! Tell everyone what your mod is about!",
     "authors": [
         "0xJoeMama",
@@ -17,19 +17,19 @@
     },
 
     "license": "CC0-1.0",
-    "icon": "assets/voidmagic/icon.png",
+    "icon": "assets/encircled/icon.png",
 
     "environment": "*",
     "entrypoints": {
         "main": [
-            "io.github.llamarama.team.voidmagic.VoidMagic"
+            "io.github.llamarama.team.encircled.Encircled"
         ],
         "client": [
-            "io.github.llamarama.team.voidmagic.client.VoidMagicClient"
+            "io.github.llamarama.team.encircled.client.EncircledClient"
         ]
     },
     "mixins": [
-        "voidmagic.mixins.json"
+        "encircled.mixins.json"
     ],
 
     "depends": {

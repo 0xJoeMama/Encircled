@@ -1,0 +1,7 @@
+{
+    "parent": "encircled:item/template/pillar_item_template",
+    "textures": {
+        "0": "encircled:block/withered_stone_pillar_base",
+        "1": "encircled:block/pillar/withered_stone_pillar_cap"
+    }
+}

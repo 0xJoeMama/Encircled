@@ -1,0 +1,8 @@
+{
+    "parent": "minecraft:block/inner_stairs",
+    "textures": {
+        "side": "encircled:block/tofal_bricks",
+        "bottom": "encircled:block/tofal_bricks",
+        "top": "encircled:block/tofal_bricks"
+    }
+}

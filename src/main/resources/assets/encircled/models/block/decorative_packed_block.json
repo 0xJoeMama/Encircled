@@ -1,0 +1,7 @@
+{
+    "parent": "minecraft:block/cube_all",
+    "textures": {
+        "all": "encircled:block/packed_block",
+        "particle": "encircled:block/packed_block"
+    }
+}

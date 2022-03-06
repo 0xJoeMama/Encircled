@@ -1,0 +1,7 @@
+{
+    "parent": "encircled:block/template/chalk_template",
+    "textures": {
+        "0": "encircled:block/chalk/chalk_unstable",
+        "particle": "encircled:block/chalk/chalk_unstable"
+    }
+}

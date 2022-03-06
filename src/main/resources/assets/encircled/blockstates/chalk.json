@@ -1,0 +1,31 @@
+{
+    "variants": {
+        "chalk_type=none": {
+            "model": "encircled:block/chalk/chalk_none"
+        },
+        "chalk_type=light": {
+            "model": "encircled:block/chalk/chalk_light"
+        },
+        "chalk_type=dark": {
+            "model": "encircled:block/chalk/chalk_dark"
+        },
+        "chalk_type=balanced": {
+            "model": "encircled:block/chalk/chalk_balanced"
+        },
+        "chalk_type=unstable": {
+            "model": "encircled:block/chalk/chalk_unstable"
+        },
+        "chalk_type=water": {
+            "model": "encircled:block/chalk/chalk_water"
+        },
+        "chalk_type=fire": {
+            "model": "encircled:block/chalk/chalk_fire"
+        },
+        "chalk_type=earth": {
+            "model": "encircled:block/chalk/chalk_earth"
+        },
+        "chalk_type=air": {
+            "model": "encircled:block/chalk/chalk_air"
+        }
+    }
+}

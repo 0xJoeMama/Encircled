@@ -1,0 +1,8 @@
+{
+    "parent": "minecraft:block/outer_stairs",
+    "textures": {
+        "side": "encircled:block/withered_stone_bricks",
+        "bottom": "encircled:block/withered_stone_bricks",
+        "top": "encircled:block/withered_stone_bricks"
+    }
+}

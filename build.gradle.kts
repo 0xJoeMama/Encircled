@@ -34,7 +34,7 @@ tasks {
     }
 
     withType(JavaCompile::class) {
-        options.release.set(17)
+        options.release.set(16)
         options.encoding = "UTF-8"
     }
 }

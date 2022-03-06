@@ -1,0 +1,8 @@
+{
+    "parent": "minecraft:block/slab",
+    "textures": {
+        "side": "encircled:block/tofal_tiles",
+        "bottom": "encircled:block/tofal_tiles",
+        "top": "encircled:block/tofal_tiles"
+    }
+}
