@@ -18,6 +18,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class OfferingPlateBlockEntity extends BlockEntity implements OfferingPlateInventory {
@@ -46,7 +47,7 @@ public class OfferingPlateBlockEntity extends BlockEntity implements OfferingPla
         InventoryUtils.readInventory(nbt, this.stacks);
     }
 
-    public void interact(PlayerEntity player) {
+    public void interact(@NotNull PlayerEntity player) {
         if (!player.world.isClient){
             ItemStack playerStack = player.getStackInHand(player.getActiveHand());
             ItemStack stackInHand = playerStack.copy();
@@ -63,6 +64,8 @@ public class OfferingPlateBlockEntity extends BlockEntity implements OfferingPla
                 }
             }
 
+            // At the moment we yeet a random packet to the player. It may be better to use a custom one but the
+            // mojang one seems to work for now so ig its staying lol
             ((ServerPlayerEntity) player).networkHandler.sendPacket(this.toUpdatePacket());
         }
     }

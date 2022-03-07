@@ -91,8 +91,7 @@ public final class ModBlocks {
 
     @NotNull
     private static Block register(String id, Block block) {
-        Registry.register(Registry.ITEM, IdBuilder.of(id), new BlockItem(block,
-                new Item.Settings().group(ModItemGroup.get())));
+        ModItems.register(id, new BlockItem(block, ModItems.DEFAULT.get()));
         return registerNoItem(id, block);
     }
 

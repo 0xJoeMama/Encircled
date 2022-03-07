@@ -4,6 +4,7 @@
     "package": "io.github.llamarama.team.encircled.mixin",
     "compatibilityLevel": "JAVA_17",
     "mixins": [
+        "AccessorBlockEntityType",
         "MixinChunkSerializer",
         "MixinServerWorld",
         "MixinThreadedAnvilChunkStorage",

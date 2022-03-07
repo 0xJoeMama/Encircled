@@ -29,7 +29,6 @@ public class InitialGuideBookScreen extends Screen {
     private ButtonWidget increaseButton;
     private ButtonWidget decreaseButton;
 
-
     public InitialGuideBookScreen(ItemStack bookStack) {
         super(new TranslatableText(GUIDE_BOOK_SCREEN_KEY));
         this.bookStack = bookStack;

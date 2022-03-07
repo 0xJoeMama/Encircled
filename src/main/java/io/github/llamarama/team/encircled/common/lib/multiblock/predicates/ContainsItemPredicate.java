@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 public class ContainsItemPredicate extends BlockEntityPredicate {
 
@@ -26,7 +27,7 @@ public class ContainsItemPredicate extends BlockEntityPredicate {
     }
 
     @Override
-    public boolean checkPos(World world, BlockPos pos) {
+    public boolean checkPos(@NotNull World world, BlockPos pos) {
         boolean oldCheck = super.checkPos(world, pos);
 
         BlockEntity blockEntity = world.getBlockEntity(pos);

@@ -4,16 +4,29 @@ import io.github.llamarama.team.encircled.api.multiblock.PositionPredicate;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
-public record BlockStatePredicate(BlockState state) implements PositionPredicate {
+import java.util.Random;
 
-    @Override
-    public boolean checkPos(World world, BlockPos pos) {
-        return world.getBlockState(pos).equals(this.state);
+public class BlockStatePredicate implements PositionPredicate {
+
+    private final BlockState state;
+
+    public BlockStatePredicate(BlockState state) {
+        this.state = state;
     }
 
     public BlockState getState() {
         return this.state;
+    }
+
+    public BlockState getClientRenderState(Random random) {
+        return this.getState();
+    }
+
+    @Override
+    public boolean checkPos(@NotNull World world, BlockPos pos) {
+        return world.getBlockState(pos).equals(this.state);
     }
 
 }

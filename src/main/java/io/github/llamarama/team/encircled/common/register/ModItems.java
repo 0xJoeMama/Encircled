@@ -34,7 +34,7 @@ public final class ModItems {
     }
 
     @NotNull
-    private static Item register(String id, Item item) {
+    static Item register(String id, Item item) {
         REGISTRY.putIfAbsent(id, item);
         return item;
     }

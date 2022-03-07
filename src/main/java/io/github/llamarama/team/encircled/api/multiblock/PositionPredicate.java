@@ -2,6 +2,7 @@ package io.github.llamarama.team.encircled.api.multiblock;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Represents a position in a multiblock. You can either use a lambda with this, use an implementation of this class
@@ -20,6 +21,6 @@ public interface PositionPredicate {
      * @param pos   The position to check ih,
      * @return Whether the position can be accepted by the target multiblock.
      */
-    boolean checkPos(World world, BlockPos pos);
+    boolean checkPos(@NotNull World world, BlockPos pos);
 
 }
